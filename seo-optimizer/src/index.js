@@ -57,10 +57,12 @@ async function main() {
             const result = await publishArticle(newArticleData);
             console.log(`Successfully published optimized article ID: ${result.id}`);
 
-            // Optional: Mark original as processed (if we had a field for it, or just leave it)
-            // for now, we just log it.
+            // Mark original as optimized so we don't process it again next time
+            await updateArticle(article.id, { is_optimized: true });
+            console.log(`Marked original article ${article.id} as optimized.`);
+
         } catch (err) {
-            console.error("Failed to publish optimized article.");
+            console.error("Failed to publish optimized article.", err.message);
         }
     }
 
