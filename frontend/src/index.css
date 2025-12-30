@@ -290,10 +290,11 @@ p {
   .comparison-container {
     grid-template-columns: 1fr 1fr;
     gap: 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius);
-    background: hsl(var(--bg-card));
-    overflow: hidden;
+    /* Remove generic border/radius to allow 3D effect to show */
+    background: transparent;
+    perspective: 1200px;
+    /* Enable Z-axis */
+    margin-top: 1rem;
   }
 }
 
@@ -306,10 +307,41 @@ p {
   .article-column {
     max-height: 80vh;
     border-right: 1px solid rgba(255, 255, 255, 0.05);
+    background: hsl(var(--bg-card));
+    /* Ensure background for 3D item */
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
   }
 
+  /* Original Column (Left) */
+  .article-column:first-child {
+    transform: perspective(1000px) rotateY(10deg) translateZ(-20px) scale(0.95);
+    opacity: 0.7;
+    border-radius: var(--radius);
+    transform-origin: right center;
+  }
+
+  /* AI Enhanced Column (Right) */
   .article-column:last-child {
     border-right: none;
+    border-left: 1px solid rgba(var(--primary), 0.2);
+    /* The Z-axis Effect */
+    transform: perspective(1000px) rotateY(-5deg) translateZ(20px) scale(1.02);
+    box-shadow: -30px 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(var(--primary), 0.15);
+    z-index: 10;
+    border-radius: var(--radius);
+    transform-origin: left center;
+  }
+
+  /* Interactive Hover Effect */
+  .comparison-container:hover .article-column:first-child {
+    transform: perspective(1000px) rotateY(0deg) translateZ(0) scale(1);
+    opacity: 1;
+  }
+
+  .comparison-container:hover .article-column:last-child {
+    transform: perspective(1000px) rotateY(0deg) translateZ(0) scale(1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
   }
 }
 
