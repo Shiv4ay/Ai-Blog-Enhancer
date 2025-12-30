@@ -20,11 +20,11 @@ const ArticleCard = ({ article }) => {
             </div>
 
             <h3 className="text-xl font-bold mb-3 group-hover:text-[hsl(var(--primary))] transition-colors">
-                {article.title.replace('[Optimized] ', '')}
+                {(article.title || 'Untitled').replace('[Optimized] ', '')}
             </h3>
 
             <p className="text-[hsl(var(--text-muted))] mb-6 flex-grow line-clamp-3">
-                {article.excerpt.replace(/<[^>]*>?/gm, '')}
+                {(article.excerpt || '').replace(/<[^>]*>?/gm, '')}
             </p>
 
             <Link
