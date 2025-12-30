@@ -102,7 +102,6 @@ const ArticleComparison = () => {
                 >
                     <div className="column-header">
                         <div className="column-title" style={{ color: 'hsl(var(--primary))' }}>
-                            <Sparkles size={24} />
                             AI Enhanced
                             <span className="column-badge badge-optimized">SEO Ready</span>
                         </div>
