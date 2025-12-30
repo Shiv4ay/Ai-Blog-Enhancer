@@ -8,9 +8,6 @@ const Home = () => {
             <div className="glass-header">
                 <div className="container flex items-center justify-between">
                     <div className="flex items-center gap-2 font-bold text-xl text-white">
-                        <div className="bg-[hsl(var(--primary))] p-1 rounded-lg">
-                            <Sparkles size={24} color="white" />
-                        </div>
                         BeyondChats <span className="text-[hsl(var(--primary))]">SEO</span>
                     </div>
                     <a
